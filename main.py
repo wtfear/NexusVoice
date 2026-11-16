@@ -2,9 +2,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 
-from livekit.agents import JobContext, WorkerOptions, cli, JobProcess
-from livekit.agents.llm import ChatContext, ChatMessage
-from livekit.agents.voice_assistant import VoiceAssistant
+from livekit.agents import JobContext, WorkerOptions, cli, JobProcess, Agent, AgentSession
 from livekit.plugins import deepgram, silero, openai
 
 load_dotenv()
@@ -42,25 +40,16 @@ def prewarm(proc: JobProcess):
 
 async def entrypoint(ctx: JobContext):
     """Entry point for incoming WebRTC live voice rooms."""
-    initial_ctx = ChatContext(
-        messages=[
-            ChatMessage(
-                role="system",
-                content=SYSTEM_PROMPT,
-            )
-        ]
-    )
-
-    # Initialize Text-to-Speech (Cartesia if key present, fallback to Deepgram TTS)
+    
+    # Initialize Text-to-Speech (Cartesia if key present, fallback to Deepgram Aura TTS)
     cartesia_key = os.getenv("CARTESIA_API_KEY")
     if cartesia_key:
         from livekit.plugins import cartesia
         tts_engine = cartesia.TTS(voice=os.getenv("CARTESIA_VOICE_ID", "248be419-c632-4f23-adf1-5324ed7dbf1d"))
     else:
-        # Fallback to Deepgram Aura TTS (uses the same Deepgram API credit)
         tts_engine = deepgram.TTS(model="aura-asteria-en")
 
-    assistant = VoiceAssistant(
+    session = AgentSession(
         vad=ctx.proc.userdata["vad"],
         stt=deepgram.STT(model="nova-2-general"),
         llm=openai.LLM(
@@ -69,13 +58,15 @@ async def entrypoint(ctx: JobContext):
             model=LLM_MODEL,
         ),
         tts=tts_engine,
-        chat_ctx=initial_ctx,
+        allow_interruptions=True,
     )
 
+    agent = Agent(instructions=SYSTEM_PROMPT)
+
     await ctx.connect()
-    assistant.start(ctx.room)
+    await session.start(agent, room=ctx.room)
     await asyncio.sleep(0.5)
-    await assistant.say(GREETING_MESSAGE, allow_interruptions=True)
+    await session.say(GREETING_MESSAGE, allow_interruptions=True)
 
 
 if __name__ == "__main__":
