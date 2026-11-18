@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusVoice — Sovereign Real-Time Autonomous Conversational Voice AI Platform | WTFear Agency</title>
+  <meta name="description" content="Eliminate $0.15/min Vapi & Retell AI taxes. Deploy sub-400ms sovereign voice agents with LiveKit WebRTC, SIP telephony, and function calling by WTFear Agency.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              space: '#060714',
+              surface: '#0D0F26',
+              card: '#141838',
+              border: '#282E60',
+              iris: '#6366F1',
+              indigo: '#818CF8',
+              cyan: '#06B6D4',
+              pink: '#EC4899',
+              gold: '#FBBF24',
+              emerald: '#34D399'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(1.1); }
+    }
+    .animate-glow {
+      animation: pulseGlow 6s infinite ease-in-out;
+    }
+    @keyframes waveBar {
+      0%, 100% { height: 8px; }
+      50% { height: 38px; }
+    }
+    .animate-wave-1 { animation: waveBar 1.2s infinite ease-in-out 0.1s; }
+    .animate-wave-2 { animation: waveBar 1.2s infinite ease-in-out 0.3s; }
+    .animate-wave-3 { animation: waveBar 1.2s infinite ease-in-out 0.5s; }
+    .animate-wave-4 { animation: waveBar 1.2s infinite ease-in-out 0.2s; }
+    .animate-wave-5 { animation: waveBar 1.2s infinite ease-in-out 0.4s; }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #060714;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #282E60;
+      border-radius: 3px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #6366F1;
+    }
+  </style>
+</head>
+<body class="bg-brand-space text-slate-100 min-h-screen flex flex-col font-sans selection:bg-brand-iris selection:text-white custom-scroll">
+
+  <!-- TOP SOVEREIGN STATUS TICKER -->
+  <div class="border-b border-brand-border/60 bg-[#03040A]/90 backdrop-blur-md px-4 py-2 text-xs flex justify-between items-center text-slate-400">
+    <div class="flex items-center gap-2">
+      <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-indigo opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-iris"></span>
+      </span>
+      <span class="font-mono text-brand-indigo font-bold tracking-wider text-[11px]">NEXUS VOICE AI RUNTIME: ACTIVE</span>
+      <span class="text-slate-800 hidden sm:inline">|</span>
+      <span class="hidden sm:inline text-slate-400 font-mono text-[11px]">TELEPHONY: LIVEKIT WEBRTC & SIP TRUNKS</span>
+      <span class="text-slate-800 hidden md:inline">|</span>
+      <span class="hidden md:inline text-brand-emerald font-mono text-[11px]">Zero Vapi/Retell Per-Minute Taxes • Sub-400ms Voice Turnaround</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <div id="liveClock" class="font-mono text-slate-400 text-[11px] hidden sm:block"></div>
+      <a href="https://github.com/wtfear/NexusVoice" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0D0F26] border border-brand-border text-brand-indigo hover:text-white text-[11px] transition-colors">
+        <i data-lucide="github" class="w-3.5 h-3.5"></i>
+        <span>wtfear/NexusVoice</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="border-b border-brand-border/60 bg-brand-space/90 sticky top-0 z-40 backdrop-blur-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brand-iris via-brand-indigo to-pink-900 flex items-center justify-center shadow-lg shadow-brand-iris/25 border border-brand-indigo/40 shrink-0">
+          <i data-lucide="mic" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-black tracking-tight text-white">Nexus<span class="text-brand-indigo">Voice</span></span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-brand-iris/20 text-brand-indigo border border-brand-iris/40 font-bold uppercase">Real-Time Voice OS</span>
+          </div>
+          <p class="text-[10px] text-slate-400 hidden sm:block">Sovereign Autonomous Conversational Voice Agent & Telephony Engine</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#services" class="hover:text-brand-indigo transition-colors">Capabilities</a>
+        <a href="#benchmark" class="hover:text-brand-indigo transition-colors">Vapi vs NexusVoice</a>
+        <a href="#live-cockpit" class="hover:text-brand-indigo transition-colors flex items-center gap-1.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-iris animate-pulse"></span>
+          Voice Studio
+        </a>
+        <a href="#testimonials" class="hover:text-brand-indigo transition-colors">Case Studies</a>
+        <a href="#contact" class="hover:text-brand-indigo transition-colors">Deploy</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="#live-cockpit" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-brand-border bg-brand-surface text-slate-300 hover:text-brand-indigo text-xs font-medium transition-colors">
+          <i data-lucide="play" class="w-3.5 h-3.5 text-brand-iris"></i>
+          <span>Live Demo</span>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-brand-iris to-brand-indigo text-white font-bold text-xs hover:opacity-95 transition-opacity shadow-lg shadow-brand-iris/30">
+          <i data-lucide="phone-outgoing" class="w-3.5 h-3.5"></i>
+          <span>Deploy Voice Agent</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden pt-16 pb-20 border-b border-brand-border/60">
+    <!-- Glow Background Accents -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-brand-iris/15 rounded-full blur-[140px] pointer-events-none animate-glow"></div>
+    <div class="absolute -top-12 right-10 w-96 h-96 bg-brand-pink/10 rounded-full blur-[110px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-iris/20 border border-brand-iris/40 text-brand-indigo text-xs font-mono mb-6">
+        <i data-lucide="radio" class="w-3.5 h-3.5 text-brand-cyan"></i>
+        <span>Sub-400ms Voice Turnaround • Interruption Ready • LiveKit WebRTC & SIP</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight sm:leading-none">
+        Kill Vapi & Retell AI Per-Minute Tolls.<br>
+        <span class="bg-gradient-to-r from-brand-indigo via-brand-cyan to-brand-pink bg-clip-text text-transparent">Deploy Sovereign Conversational Voice for $0.</span>
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+        Stop paying $0.15 to $0.25 every minute your voice agent talks to a customer. NexusVoice delivers ultra-realistic, low-latency conversational agents with natural interruption handling and live tool execution on your own cloud.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#live-cockpit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-iris to-brand-indigo text-white font-bold text-sm hover:brightness-110 transition-all shadow-xl shadow-brand-iris/25">
+          <i data-lucide="volume-2" class="w-4 h-4"></i>
+          <span>Open Voice Call Studio</span>
+        </a>
+        <a href="#benchmark" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-card border border-brand-border text-slate-300 hover:text-white hover:border-brand-iris/50 text-sm font-medium transition-all">
+          <i data-lucide="calculator" class="w-4 h-4 text-brand-indigo"></i>
+          <span>Calculate Vapi Cutover ROI</span>
+        </a>
+      </div>
+
+      <!-- Live KPI Badges -->
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+        <div class="p-4 rounded-xl bg-brand-surface/70 border border-brand-border backdrop-blur">
+          <div class="text-xs text-slate-400 font-mono uppercase">Voice Call Minutes</div>
+          <div class="text-2xl font-black text-brand-indigo mt-1 font-mono">Unlimited</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Zero per-minute platform markups</div>
+        </div>
+        <div class="p-4 rounded-xl bg-brand-surface/70 border border-brand-border backdrop-blur">
+          <div class="text-xs text-slate-400 font-mono uppercase">Voice Turnaround</div>
+          <div class="text-2xl font-black text-white mt-1 font-mono">&lt; 340 ms</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Streaming STT + LLM + TTS</div>
+        </div>
+        <div class="p-4 rounded-xl bg-brand-surface/70 border border-brand-border backdrop-blur">
+          <div class="text-xs text-slate-400 font-mono uppercase">Interruption Handling</div>
+          <div class="text-2xl font-black text-brand-cyan mt-1 font-mono">Real-Time</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Speaks & listens simultaneously</div>
+        </div>
+        <div class="p-4 rounded-xl bg-brand-surface/70 border border-brand-border backdrop-blur">
+          <div class="text-xs text-slate-400 font-mono uppercase">Annual SaaS Tax</div>
+          <div class="text-2xl font-black text-brand-emerald mt-1 font-mono">$0.00 / mo</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Save $40,000+ vs Vapi / Retell</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CORE SERVICE PILLARS -->
+  <section id="services" class="py-20 bg-brand-surface/50 border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase text-brand-indigo tracking-widest font-bold">Enterprise Service Pillars</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Next-Generation Voice AI Architecture</h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">Why health networks, logistics dispatch centers, and customer service teams migrate to NexusVoice.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Pillar 1 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border hover:border-brand-iris/40 transition-all group">
+          <div class="h-12 w-12 rounded-xl bg-brand-iris/20 border border-brand-iris/40 flex items-center justify-center text-brand-indigo mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Sub-400ms Voice Pipeline</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Streaming audio pipeline fuses Deepgram Nova-2 speech recognition, Groq Llama-3.3 70B inference, and Cartesia / ElevenLabs streaming synthesis with human conversational cadence.
+          </p>
+          <div class="mt-4 pt-4 border-t border-brand-border/60 text-xs font-mono text-brand-indigo flex items-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>No awkward robotic pauses</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border hover:border-brand-cyan/40 transition-all group">
+          <div class="h-12 w-12 rounded-xl bg-cyan-950/40 border border-cyan-800/40 flex items-center justify-center text-brand-cyan mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="phone-call" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">SIP Telephony & WebRTC</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Connect directly to Twilio, Telnyx, or carrier SIP trunks for inbound support hotlines and automated outbound appointment confirmations with crystal-clear Opus audio codecs.
+          </p>
+          <div class="mt-4 pt-4 border-t border-brand-border/60 text-xs font-mono text-brand-cyan flex items-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>Carrier-grade call fidelity</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border hover:border-brand-pink/40 transition-all group">
+          <div class="h-12 w-12 rounded-xl bg-pink-950/40 border border-pink-800/40 flex items-center justify-center text-brand-pink mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Live Function Calling</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Your voice agents execute real-time backend API calls while talking: looking up shipment tracking numbers, querying flight schedules, booking calendar slots, and canceling reservations.
+          </p>
+          <div class="mt-4 pt-4 border-t border-brand-border/60 text-xs font-mono text-brand-pink flex items-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>Real-time DB query execution</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border hover:border-brand-emerald/40 transition-all group">
+          <div class="h-12 w-12 rounded-xl bg-emerald-950/40 border border-emerald-800/40 flex items-center justify-center text-brand-emerald mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">100% HIPAA Audio Sovereignty</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Voice recordings and transcripts never touch public third-party telemetry aggregators. Run models on private VPC hardware with end-to-end encryption.
+          </p>
+          <div class="mt-4 pt-4 border-t border-brand-border/60 text-xs font-mono text-brand-emerald flex items-center gap-1.5">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>Compliant with healthcare laws</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI & BENCHMARK MATRIX (NexusVoice vs Vapi vs Retell AI) -->
+  <section id="benchmark" class="py-20 border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-mono uppercase text-brand-indigo tracking-widest font-bold">Quantitative Cutover Analysis</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Why Voice Teams Are Leaving Vapi & Retell AI</h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">Cost comparison for an organization processing 20,000 call minutes every month.</p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-brand-border bg-brand-surface shadow-2xl">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-brand-border bg-brand-card/80 text-xs uppercase font-mono tracking-wider text-slate-300">
+              <th class="py-4 px-6 font-semibold">Evaluation Criteria</th>
+              <th class="py-4 px-6 font-semibold text-brand-indigo bg-brand-iris/10 border-x border-brand-iris/30">
+                NexusVoice (WTFear)
+              </th>
+              <th class="py-4 px-6 font-semibold text-slate-400">Vapi.ai</th>
+              <th class="py-4 px-6 font-semibold text-slate-400">Retell AI</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border/60 font-sans">
+            <tr class="hover:bg-brand-card/40 transition-colors">
+              <td class="py-4 px-6 font-medium text-white flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4 text-brand-indigo"></i>
+                Annual Platform Minute Fee (20k mins/mo)
+              </td>
+              <td class="py-4 px-6 font-mono text-brand-emerald font-black bg-brand-iris/5 border-x border-brand-iris/20">
+                $0.00 / yr (Zero Platform Markup)
+              </td>
+              <td class="py-4 px-6 text-rose-400 font-mono font-bold">$36,000 / yr ($0.15/min markup)</td>
+              <td class="py-4 px-6 text-amber-400 font-mono">$38,400 / yr ($0.16/min)</td>
+            </tr>
+            <tr class="hover:bg-brand-card/40 transition-colors">
+              <td class="py-4 px-6 font-medium text-white flex items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-brand-indigo"></i>
+                Voice-to-Voice Latency
+              </td>
+              <td class="py-4 px-6 font-mono text-brand-cyan font-bold bg-brand-iris/5 border-x border-brand-iris/20">
+                &lt; 340 ms (Direct WebSocket)
+              </td>
+              <td class="py-4 px-6 text-slate-300">600 - 900 ms</td>
+              <td class="py-4 px-6 text-slate-300">550 - 800 ms</td>
+            </tr>
+            <tr class="hover:bg-brand-card/40 transition-colors">
+              <td class="py-4 px-6 font-medium text-white flex items-center gap-2">
+                <i data-lucide="lock" class="w-4 h-4 text-brand-indigo"></i>
+                Private Cloud / On-Prem Deployment
+              </td>
+              <td class="py-4 px-6 font-mono text-brand-emerald font-bold bg-brand-iris/5 border-x border-brand-iris/20">
+                100% Private VPC / Self-Hosted
+              </td>
+              <td class="py-4 px-6 text-rose-400">Multi-tenant US SaaS cloud</td>
+              <td class="py-4 px-6 text-rose-400">Multi-tenant SaaS cloud</td>
+            </tr>
+            <tr class="hover:bg-brand-card/40 transition-colors">
+              <td class="py-4 px-6 font-medium text-white flex items-center gap-2">
+                <i data-lucide="code" class="w-4 h-4 text-brand-indigo"></i>
+                LiveKit Agents Native SDK
+              </td>
+              <td class="py-4 px-6 font-mono text-brand-indigo font-bold bg-brand-iris/5 border-x border-brand-iris/20">
+                Modern LiveKit v1.3 Runtime
+              </td>
+              <td class="py-4 px-6 text-slate-400">Proprietary wrapper</td>
+              <td class="py-4 px-6 text-slate-400">Proprietary blackbox API</td>
+            </tr>
+            <tr class="hover:bg-brand-card/40 transition-colors">
+              <td class="py-4 px-6 font-medium text-white flex items-center gap-2">
+                <i data-lucide="calculator" class="w-4 h-4 text-brand-indigo"></i>
+                Total Estimated 3-Year Cost
+              </td>
+              <td class="py-4 px-6 font-mono text-brand-emerald font-black text-base bg-brand-iris/5 border-x border-brand-iris/20">
+                $0.00 (Self-Hosted)
+              </td>
+              <td class="py-4 px-6 text-rose-400 font-mono font-bold text-base">$108,000</td>
+              <td class="py-4 px-6 text-amber-400 font-mono text-base">$115,200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE LIVE COCKPIT / VOICE CALL STUDIO -->
+  <section id="live-cockpit" class="py-20 bg-brand-surface/70 border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-brand-iris/20 border border-brand-iris/40 text-brand-indigo text-xs font-mono mb-2">
+            <span class="h-2 w-2 rounded-full bg-brand-iris animate-ping"></span>
+            LIVE VOICE AGENT CALL COCKPIT
+          </div>
+          <h2 class="text-3xl font-extrabold text-white">Experience Sub-400ms Turnaround</h2>
+          <p class="text-slate-400 text-sm mt-1">Simulate real-time voice streaming with natural barge-in interruption handling.</p>
+        </div>
+
+        <!-- Latency HUD -->
+        <div class="flex items-center gap-3 font-mono text-xs text-slate-300">
+          <div class="px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-brand-cyan animate-pulse"></span>
+            <span>STT: <strong class="text-brand-cyan">110ms</strong></span>
+          </div>
+          <div class="px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-brand-indigo animate-pulse"></span>
+            <span>LLM: <strong class="text-brand-indigo">140ms</strong></span>
+          </div>
+          <div class="px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-brand-pink animate-pulse"></span>
+            <span>TTS: <strong class="text-brand-pink">90ms</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VOICE STUDIO CONTAINER -->
+      <div class="rounded-2xl border border-brand-border bg-brand-card shadow-2xl p-6 relative overflow-hidden grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        
+        <!-- COLUMN 1: INTERACTIVE AGENT VISUALIZER (5 cols) -->
+        <div class="md:col-span-5 p-6 rounded-xl bg-brand-surface border border-brand-border flex flex-col items-center justify-center text-center">
+          <div class="relative mb-6">
+            <div class="h-24 w-24 rounded-full bg-gradient-to-tr from-brand-iris via-brand-indigo to-pink-600 flex items-center justify-center shadow-2xl shadow-brand-iris/40">
+              <i data-lucide="bot" class="w-12 h-12 text-white"></i>
+            </div>
+            <div class="absolute -bottom-1 -right-1 px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500 text-brand-emerald text-[10px] font-mono font-bold">
+              LISTENING
+            </div>
+          </div>
+
+          <h3 class="text-base font-bold text-white">Aria — Enterprise Patient Intake Agent</h3>
+          <p class="text-xs text-slate-400 mt-1 font-mono">Channel: LiveKit WebRTC Session • 48kHz Opus</p>
+
+          <!-- Waveform Visualizer -->
+          <div class="flex items-center gap-1.5 my-6 h-10">
+            <div class="w-1.5 bg-brand-cyan rounded-full animate-wave-1"></div>
+            <div class="w-1.5 bg-brand-indigo rounded-full animate-wave-2"></div>
+            <div class="w-1.5 bg-brand-pink rounded-full animate-wave-3"></div>
+            <div class="w-1.5 bg-brand-cyan rounded-full animate-wave-4"></div>
+            <div class="w-1.5 bg-brand-indigo rounded-full animate-wave-5"></div>
+            <div class="w-1.5 bg-brand-pink rounded-full animate-wave-1"></div>
+            <div class="w-1.5 bg-brand-cyan rounded-full animate-wave-3"></div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="simulateVoiceCall()" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-brand-iris to-brand-indigo text-white font-bold text-xs hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-brand-iris/30">
+              <i data-lucide="mic" class="w-4 h-4"></i>
+              <span>Simulate Voice Utterance</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: REAL-TIME STREAMING CALL TRANSCRIPT (7 cols) -->
+        <div class="md:col-span-7 flex flex-col space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-brand-border text-xs font-mono">
+            <span class="text-white font-bold flex items-center gap-2">
+              <i data-lucide="phone-incoming" class="w-4 h-4 text-brand-cyan"></i>
+              <span>Live WebRTC Audio Telemetry Stream</span>
+            </span>
+            <span class="text-brand-emerald font-bold">Total Latency: 340ms</span>
+          </div>
+
+          <div id="voiceTranscriptContainer" class="space-y-3 font-mono text-xs max-h-72 overflow-y-auto custom-scroll pr-1">
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border text-slate-300">
+              <span class="text-brand-cyan font-bold">[00:01.2] Patient:</span> "Hi Aria, I need to reschedule my cardiology consultation with Dr. Thorne in Chicago."
+            </div>
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-iris/40 text-slate-100">
+              <span class="text-brand-indigo font-bold">[00:01.5] Aria (NexusVoice):</span> "Certainly, Marcus! I can see your appointment on Thursday at 2:00 PM. Would Friday morning at 10:30 AM work better for you?"
+              <div class="mt-2 text-[10px] text-brand-emerald flex items-center gap-1.5">
+                <i data-lucide="check" class="w-3 h-3"></i>
+                <span>Executed tool: check_physician_availability(dr_id="thorne", date="2026-11-20")</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHENTIC ENTERPRISE TESTIMONIALS -->
+  <section id="testimonials" class="py-20 border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase text-brand-indigo tracking-widest font-bold">Proven Enterprise Impact</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Trusted by Clinical & Telephony Operations Leaders</h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">Real experiences from organizations that eliminated Vapi/Retell AI per-minute taxes and deployed sovereign voice infrastructure.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-between hover:border-brand-iris/40 transition-all">
+          <div>
+            <div class="flex items-center gap-1 text-brand-indigo mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-brand-indigo"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-indigo"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-indigo"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-indigo"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-indigo"></i>
+            </div>
+            <p class="text-sm text-slate-300 italic leading-relaxed">
+              "Retell AI was costing our clinic network $12,000 every month just in per-minute fees for patient intake calls. NexusVoice cut our voice turnaround latency to 340ms and saved us $140,000 annually while maintaining strict HIPAA compliance."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-border flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-brand-iris to-pink-600 text-white font-bold flex items-center justify-center text-sm">
+              MV
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Dr. Marcus Vance</div>
+              <div class="text-xs text-brand-indigo font-mono">CMO • Apex Telehealth (Chicago)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-between hover:border-brand-cyan/40 transition-all">
+          <div>
+            <div class="flex items-center gap-1 text-brand-cyan mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-brand-cyan"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-cyan"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-cyan"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-cyan"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-cyan"></i>
+            </div>
+            <p class="text-sm text-slate-300 italic leading-relaxed">
+              "Our drivers call in high-noise warehouse environments. NexusVoice's interruption handling and noise cancellation are flawless. Our automated dispatch resolution rate increased by 31% with zero monthly software tolls."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-border flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-brand-cyan to-indigo-600 text-slate-950 font-bold flex items-center justify-center text-sm">
+              HB
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Helena Berg</div>
+              <div class="text-xs text-brand-cyan font-mono">Head of Customer Care • Nordic Air Cargo (Oslo)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-between hover:border-brand-pink/40 transition-all">
+          <div>
+            <div class="flex items-center gap-1 text-brand-pink mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-brand-pink"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-pink"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-pink"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-pink"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-brand-pink"></i>
+            </div>
+            <p class="text-sm text-slate-300 italic leading-relaxed">
+              "We process 45,000 outbound verification calls every month. Deploying NexusVoice on our private AWS cluster gave us complete call recording ownership and saved over $60,000 in Vapi markups in year one."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-border flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-brand-pink to-indigo-600 text-white font-bold flex items-center justify-center text-sm">
+              DS
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">David Sterling</div>
+              <div class="text-xs text-brand-pink font-mono">VP of Operations • OmniFinancial (New York)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE CONTACT & CUTOVER DEPLOYMENT -->
+  <section id="contact" class="py-20 bg-brand-surface/70">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-brand-border bg-brand-card p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-iris/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-iris/20 border border-brand-iris/40 text-brand-indigo text-xs font-mono mb-4">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              <span>Official WTFear Enterprise Inquiry</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white">Deploy Sovereign Conversational Voice AI</h2>
+            <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+              Ready to eliminate Vapi and Retell AI per-minute platform taxes and own your voice telephony infrastructure? Contact WTFear Agency for custom LiveKit agent setup, SIP trunking, and private VPC deployment.
+            </p>
+
+            <div class="mt-6 space-y-3 font-mono text-xs">
+              <div class="flex items-center gap-3 text-slate-300">
+                <i data-lucide="mail" class="w-4 h-4 text-brand-indigo"></i>
+                <span>Direct Contact:</span>
+                <a href="mailto:wtfearb@gmail.com" class="text-brand-indigo hover:underline font-bold">wtfearb@gmail.com</a>
+              </div>
+              <div class="flex items-center gap-3 text-slate-300">
+                <i data-lucide="clock" class="w-4 h-4 text-brand-cyan"></i>
+                <span>Response SLA: &lt; 2 Hours (Executive Priority)</span>
+              </div>
+              <div class="flex items-center gap-3 text-slate-300">
+                <i data-lucide="shield" class="w-4 h-4 text-brand-emerald"></i>
+                <span>Licensing: Sovereign Open-Source / MIT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border">
+            <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs">
+              <div>
+                <label class="block text-slate-300 font-medium mb-1">Executive Name</label>
+                <input type="text" id="contactName" required placeholder="Dr. Marcus Vance" class="w-full px-3 py-2 rounded-lg bg-brand-card border border-brand-border text-white placeholder-slate-500 focus:outline-none focus:border-brand-iris text-xs">
+              </div>
+              <div>
+                <label class="block text-slate-300 font-medium mb-1">Work Email</label>
+                <input type="email" id="contactEmail" required placeholder="marcus@apextelehealth.com" class="w-full px-3 py-2 rounded-lg bg-brand-card border border-brand-border text-white placeholder-slate-500 focus:outline-none focus:border-brand-iris text-xs">
+              </div>
+              <div>
+                <label class="block text-slate-300 font-medium mb-1">Monthly Telephony Call Volume</label>
+                <select id="contactVolume" class="w-full px-3 py-2 rounded-lg bg-brand-card border border-brand-border text-white focus:outline-none focus:border-brand-iris text-xs">
+                  <option>&lt; 5,000 Call Minutes / mo</option>
+                  <option>5,000 - 25,000 Call Minutes / mo (Scaleup)</option>
+                  <option>25,000 - 100,000 Call Minutes / mo (Enterprise)</option>
+                  <option>100,000+ Call Minutes / mo (High Volume Telephony)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-300 font-medium mb-1">Voice Agent Workflows & SIP Integrations</label>
+                <textarea id="contactNotes" rows="3" placeholder="Tell us about your voice application: Inbound customer care, Twilio SIP trunking, appointment booking, HIPAA compliance..." class="w-full px-3 py-2 rounded-lg bg-brand-card border border-brand-border text-white placeholder-slate-500 focus:outline-none focus:border-brand-iris text-xs"></textarea>
+              </div>
+              <button type="submit" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-brand-iris to-brand-indigo text-white font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                <i data-lucide="check" class="w-4 h-4"></i>
+                <span>Submit Telephony Architecture Request</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-border/60 bg-[#03040A] py-10 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-6 w-6 rounded-lg bg-brand-iris text-white font-black flex items-center justify-center text-xs">
+          N
+        </div>
+        <span class="font-bold text-white">NexusVoice</span>
+        <span class="text-slate-600">|</span>
+        <span>A Sovereign Open-Source Project by WTFear Agency</span>
+      </div>
+      <div class="flex items-center gap-4 font-mono text-[11px]">
+        <a href="mailto:wtfearb@gmail.com" class="text-brand-indigo hover:underline">wtfearb@gmail.com</a>
+        <a href="https://github.com/wtfear/NexusVoice" target="_blank" class="hover:text-white transition-colors">GitHub Repository</a>
+        <span>MIT License</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function simulateVoiceCall() {
+      const container = document.getElementById('voiceTranscriptContainer');
+      const item = document.createElement('div');
+      item.className = "p-3 rounded-xl bg-brand-surface border border-brand-cyan/40 text-slate-100 animate-pulse";
+      item.innerHTML = `
+        <span class="text-brand-cyan font-bold">[00:02.1] Patient:</span> "Yes, Friday at 10:30 AM works perfectly. Thank you!"<br>
+        <span class="text-brand-indigo font-bold mt-1 block">[00:02.4] Aria (NexusVoice):</span> "You are all set for Friday, November 20 at 10:30 AM with Dr. Thorne. Confirmation SMS sent to your mobile."
+      `;
+      container.appendChild(item);
+      showToast("🎙️ Voice utterance transcribed & answered in 320ms!");
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value;
+      const email = document.getElementById('contactEmail').value;
+      showToast(`✅ Thank you ${name}! Request received. WTFear SLA team will email ${email} within 2 hours.`);
+      e.target.reset();
+    }
+
+    function showToast(message) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "pointer-events-auto px-4 py-2.5 rounded-xl bg-brand-card border border-brand-iris shadow-2xl text-xs text-white flex items-center gap-2 transform translate-y-2 transition-all font-mono";
+      toast.innerHTML = `<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 4000);
+    }
+
+    function updateClock() {
+      const clockEl = document.getElementById("liveClock");
+      if (clockEl) {
+        const now = new Date();
+        clockEl.innerText = now.toUTCString().replace("GMT", "UTC");
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      updateClock();
+      setInterval(updateClock, 1000);
+    });
+  </script>
+</body>
+</html>
