@@ -10,14 +10,16 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+# dist/ allowed for edge build
+
 downloads/
 eggs/
 .eggs/
 lib/
 lib64/
 parts/
-sdist/
+s# dist/ allowed for edge build
+
 var/
 wheels/
 share/python-wheels/
